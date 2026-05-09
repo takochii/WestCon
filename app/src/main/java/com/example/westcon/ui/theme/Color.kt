@@ -1,7 +1,24 @@
-package com.example.westcon.ui.theme
+    package com.example.westcon.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+// WESTCON Branding Colors
+val WestConBlue = Color(0xFF0052CC)
+val WestConLightBlue = Color(0xFF1E5BA8)
+val WestConGold = Color(0xFFFFA500)
+val WestConDarkBlue = Color(0xFF003A99)
+
+// Gradient Colors
+val GradientStart = Color(0xFF0052CC)
+val GradientEnd = Color(0xFF003A99)
+
+// Neutral Colors
+val White = Color(0xFFFFFFFF)
+val LightGray = Color(0xFFF5F5F5)
+val DarkGray = Color(0xFF333333)
+val TextGray = Color(0xFF666666)
+
+// Old defaults (kept for compatibility)
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
