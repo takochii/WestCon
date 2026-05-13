@@ -22,16 +22,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Makes the UI draw behind the status bar for that full-screen background effect
+        // Enables the full-screen experience behind the status bar
         enableEdgeToEdge()
 
         setContent {
             WestConTheme {
-                // Tracking 4 screens now: landing, signup, signup2, and join
+                // Tracking 6 distinct screen states
                 var currentScreen by remember { mutableStateOf("landing") }
 
                 Surface(modifier = Modifier.fillMaxSize()) {
                     when (currentScreen) {
+                        // 1. Initial Landing Page (login.kt)
                         "landing" -> {
                             WestconLoginScreen(
                                 onSignUpClick = { currentScreen = "signup" },
@@ -39,27 +40,37 @@ class MainActivity : ComponentActivity() {
                             )
                         }
 
+                        // 2. Sign Up Part 1: Credentials (signup.kt)
                         "signup" -> {
-                            // RegisterScreen is from signup.kt
                             RegisterScreen(
-                                // When user clicks "Join WESTCON", go to the next step
                                 onJoinClick = { currentScreen = "signup2" },
                                 onBackClick = { currentScreen = "landing" }
                             )
                         }
 
+                        // 3. Sign Up Part 2: College Info (signup2.kt)
                         "signup2" -> {
-                            // SignUpStepTwoScreen is from signup2.kt
                             SignUpStepTwoScreen(
-                                onNextClick = {
-                                    // Eventually move to Home Screen here
-                                    currentScreen = "landing"
-                                }
+                                onNextClick = { currentScreen = "signup3" }
                             )
                         }
 
+                        // 4. Sign Up Part 3: Skills to Give (signup3.kt)
+                        "signup3" -> {
+                            SkillSelectionScreen(
+                                onNextClick = { currentScreen = "signup4" }
+                            )
+                        }
+
+                        // 5. Sign Up Part 4: Skills to Learn (signup4.kt)
+                        "signup4" -> {
+                            SkillWantedScreen(
+                                onNextClick = { currentScreen = "landing" }
+                            )
+                        }
+
+                        // 6. Login Page (join.kt)
                         "join" -> {
-                            // LoginScreen is from join.kt
                             LoginScreen(
                                 onBackClick = { currentScreen = "landing" }
                             )
